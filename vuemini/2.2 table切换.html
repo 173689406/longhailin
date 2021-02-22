@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1 v-show="tab==1" >首页</h1>
+        <h1 v-show="tab==2" >新闻页</h1>
+        <h1 v-show="tab==3" >天气</h1>
+        <button @click="tableChange" data-id="1">首页</button>
+        <button @click="tableChange" data-id="2">新闻</button>
+        <button @click="tableChange" data-id="3">天气</button>
+        <h1 v-show="index==0" >首页</h1>
+        <h1 v-show="index==1" >新闻页</h1>
+        <h1 v-show="index==2" >天气</h1>
+        <button @click="clickEvent(index)" v-for="item,index in list">{{item}}</button>
+    </div>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                tab:1,
+                list:["首页","新闻","天气 "],
+                index:0,
+            },
+            methods:{
+                tableChange:function(e){
+                    // console.log(e)
+                    let tabid = e.target.dataset.id;
+                    this.tab = tabid;
+                },
+                clickEvent:function(index){
+                    this.index = index;
+                    console.log(index)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="js/vue.min.js"></script>
+<style>
+    #login{
+        background:skyblue;
+    }
+    #register{
+        background:pink;
+    }
+</style>
+<body>
+    <div id="app">
+        <span>{{msg}}</span>
+    </br>
+        <!-- 只一次性插入不再修改: -->
+        <span v-once>{{msg}}</span>
+    </br>
+        <span>{{htmlText}}</span>
+    </br>
+        <!-- 插入html内容 -->
+        <span v-html="htmlText"></span>
+    </br>
+    <!-- 绑定动态属性 -->
+        <span :id="idName">登录</span>
+        <!-- 模板语言的表达式应用 -->
+        <div>
+            <span>{{firstName+lastName}}</span>
+        </div>
+        <!-- 三元运算符 -->
+        <div>
+            <span>{{isVip?"欢迎vip":"普通用户请充值"}}</span>
+        </div>
+        <!-- 事件绑定 -->
+        <div>
+            <button v-on:click="changeBg">改变背景颜色</button>
+            <button @click="changeBg">改变背景颜色</button>
+        </div>
+    </div>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                msg:"hellow vue",
+                htmlText:"<strong>hello</strong>",
+                idName:"login",
+                firstName:"小",
+                lastName:"李",
+                isVip:true,
+            },
+            methods:{
+                changeBg:function(){
+                    document.querySelector("#app").style.background = "skyblue"
+                }
+            }
+        })
+    </script>
+</body>
+</html>

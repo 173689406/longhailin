@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div class="login" v-if="islogin" key="login">
+            <h2>登录</h2>
+            用户名：<input type="text">
+            密码：<input type="password">
+            <button>登录</button>
+        </div>
+        <div class="register" v-else key="register">
+            <h2>注册</h2>
+            用户名：<input type="text">
+            密码：<input type="password">
+            <button>注册</button>
+        </div>
+        <button @click="changePage">切换登录注册页</button>
+    </div>
+    <script src="js/vue.min.js"></script>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                islogin:true,
+            },
+            methods:{
+                changePage:function(){
+                    app.islogin = !app.islogin
+                }
+            }
+        })
+    </script>
+</body>
+</html>

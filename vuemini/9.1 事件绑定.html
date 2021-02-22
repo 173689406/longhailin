@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div @click="clickParent">
+            <!-- 阻止冒泡 -->
+            <button @click.stop="clickEvent">按钮</button>
+        </div>
+        <form action="">
+            <input type="text" @keydown.space="keydown">
+            <input type="submit" @click.prevent="clickPrevent">
+        </form>
+    </div>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+
+            },
+            methods:{
+                clickParent:function(){
+                    console.log("clickParent")
+                },
+                clickEvent:function(){
+                    console.log("clickEvent")
+                },
+                clickPrevent:function(){
+                    console.log("clickPrevent")
+                },
+                keydown:function(){
+                    console.log("keydown")
+                },
+            }
+        }
+        )
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{userName}}</h1>;
+        <h1 v-if="isVip">VIP用户</h1>;
+        <h2 v-else>普通用户</h2>
+        <hr>
+        <h2>用户允许登录时间</h2>
+        <h3 v-if="age>18">24小时可登录</h3>;
+        <h3 v-else-if="age>14">每天可登录8小时</h3>
+        <h3 v-else>每天可登录 4小时</h3>
+        <hr>
+        <div style="background-color:forestgreen;width:200px;height:200px;" v-show="isShow">
+            VueShow
+        </div>
+        <button @click="showPane">切换显示内容</button>
+    </div>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                userName:"小明",
+                isVip:true,
+                age:20,
+                isShow:true,
+            },
+            methods:{
+                showPane:function(){
+                    this.isShow = !this.isShow;
+                }
+            }
+        })
+        // v-if不显示时，第一次就不渲染。如果内容已经显示将其改为不显示。将内容直接从DOM去除。如果只渲染一次使用v-if。
+        // v-show不显示时，会改为display:none,但是会渲染在DOM上，如果需要反复切换使用v-show。
+    </script>
+</body>
+</html>

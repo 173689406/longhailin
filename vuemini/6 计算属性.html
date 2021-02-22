@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{fullName}}</h1>
+        <h1>{{reverseWord}}</h1>
+        <h1>循环偶数年龄</h1>
+        <ul>
+            <li v-for="item,index in oddStudents">
+                <h2>{{item.studentsName}}</h2>
+                <h3>{{item.age}}--{{item.school}}</h3>
+            </li>
+        </ul>
+    </div>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                firstName:"小",
+                lastName:"张",
+                word:"music",
+                students:[{
+                    studentsName:"小明",
+                    age:18,
+                    school:"清华"
+                },
+                {
+                    studentsName:"小黑",
+                    age:17,
+                    school:"北大" 
+                },
+                {
+                    studentsName:"小白",
+                    age:19,
+                    school:"浙大"
+                },
+                {
+                    studentsName:"小红",
+                    age:16,
+                    school:"哈佛"
+                }]
+            },
+            computed:{
+                fullName:function(){
+                    return this.firstName+this.lastName
+                },
+                reverseWord:function(){
+                    return this.word.split("").reverse().join("")
+                },
+                oddStudents:function(item){
+                    let results = this.students.filter(function(item){
+                        return item.age%2 == 0
+                    })
+                    return results
+                }
+            }
+        })
+    </script>
+</body>
+</html>

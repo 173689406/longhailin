@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="js/vue.min.js"></script>
+<style>
+    #app{
+        width:100%;
+        height:100%;
+
+    }
+</style>
+<body>
+    <div id="app">
+        <h1 v-show="index">首页</h1>
+        <h1 v-show="news">新闻页</h1>
+        <h1 v-show="weather">天气</h1>
+        <button @click="showIndex">首页</button>
+        <button @click="showNews">新闻</button>
+        <button @click="showWeather">天气</button>
+    </div>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                index:true,
+                news:false,
+                weather:false,
+            },
+            methods:{
+                showIndex:function(){
+                    app.index = true;
+                    app.news = false;
+                    app.weather = false;
+                },
+                showNews:function(){
+                    app.news = true;
+                    app.index = false;
+                    app.weather = false;
+                },
+                showWeather:function(){
+                    app.weather = true;
+                    app.index = false;
+                    app.news = false;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

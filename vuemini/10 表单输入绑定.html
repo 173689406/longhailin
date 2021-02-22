@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{username}}
+        <!-- .lazychange事件之后触发 -->
+        <h1>单行文本输入框 </h1>
+        <input type="text" v-model.lazy="username" >
+        <h2>多行文本输入框</h2>
+        <textarea name="" id="" cols="30" rows="3" v-model="username"></textarea>
+        <h2>复选框：选择喜欢的水果</h2>
+        <span v-for="item in fruits">
+            {{item}}
+            <input type="checkbox" v-model="checked" :value="item">
+        </span>
+        <h3>{{checked}}</h3>
+        <h2>单选框：选择最喜欢的水果</h2>
+        <span v-for="item in fruits">
+            {{item}}
+            <input type="radio" v-model="radiocheck" :value="item">
+        </span>
+        <h3>{{radiocheck}}</h3>
+        <h2>选项框：选择居住城市</h2>
+        <select name="" id="" v-model="choose">
+            <option value="" disabled>请选择</option>
+            <option :value="item" v-for="item in citys" >{{item}}</option>
+        </select>
+        <h3>{{choose}}</h3>
+        <h2>多选框：选择你喜欢的城市</h2>
+        <select name="" id="" multiple="multiple" v-model="chooseCity">
+            <option value="" v-for="item in citys" :value="item">{{item}}</option>
+        </select>
+        <h3>{{chooseCity}}</h3>
+    </div>
+    <script>
+        let app  = new Vue({
+            el:"#app",
+            data:{
+                username:"用户名 ",
+                fruits:["苹果","雪梨","荔枝","西瓜"],
+                checked:[],
+                radiocheck:"",
+                citys:["北京","上海","广州","深圳"],
+                choose:"",
+                chooseCity:[],
+            }
+        })
+    </script>
+</body>
+</html>
