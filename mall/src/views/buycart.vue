@@ -1,5 +1,6 @@
 <template>
     <div>
+        <!-- 购物车 -->
         <h3>购物车</h3>
         <div class="info">
         <span>30天无忧退货</span>
