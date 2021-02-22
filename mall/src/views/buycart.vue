@@ -1,6 +1,5 @@
 <template>
     <div>
-        <!-- 购物车 -->
         <h3>购物车</h3>
         <div class="info">
         <span>30天无忧退货</span>
@@ -8,8 +7,9 @@
         <span>满88免邮费</span>
         </div>
         <div class="list">
+            <van-checkbox-group v-model="result" ref="checkboxGroup">
             <div class="cartItem" v-for="(item,index) in cartlist" :key="index" >  
-                <van-checkbox v-model="item.pro" >
+                <van-checkbox  ref="checkboxGroup" :name="item.pro">
                 </van-checkbox>
                  <van-card
                 num="2"
@@ -21,8 +21,11 @@
                 origin-price="10.00"
                 />
             </div>
+            </van-checkbox-group>
+            
             <van-submit-bar :price="3050" button-text="提交订单" @submit="onSubmit">
-            <van-checkbox v-model="checked">全选</van-checkbox>
+            <van-button type="primary" @click="checkAll">全选</van-button>
+            <van-button type="info" @click="toggleAll">反选</van-button>
             </van-submit-bar>
         </div>
     </div>
@@ -31,6 +34,7 @@
 export default {
     data(){
         return {
+            result: [],
             checked: true,
             cartlist:[
                 {pro:"手机",title:"标签1",id:1},
@@ -43,7 +47,13 @@ export default {
     methods:{
          onSubmit(){
 
-         }
+         },
+          checkAll() {
+      this.$refs.checkboxGroup.toggleAll(true);
+    },
+    toggleAll() {
+      this.$refs.checkboxGroup.toggleAll();
+    },
     }
 }
 </script>
